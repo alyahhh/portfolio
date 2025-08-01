@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+}
+
+.logo {
+  position: relative;
+  font-size: 1.8em;
+  color: #fff;
+  user-select: none;
+  font-weight: 600;
+  font-style: italic;
+  margin-left: 15px;
+}
+
+.Dlogo {
+    position: fixed;
+    height: 100px;
+    left: 20px;
+    top: -2px;
+    width: 100px;
+}
+
+.navigation a {
+  position: relative;
+  font-size: 1.5em;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.navigation a::after {
+  content: '';
+  position: relative;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .5s;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+.navigation .btnlogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: .5s;
+}
+
+.navigation .btnlogin-popup:hover {
+  background: #fff;
+  color: #162938;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/bbackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+.wrapper {
+    width: 1350px;
+    height: 550px;
+    background-color: rgba(14, 70, 178, .20);
+    border: none;
+    backdrop-filter: blur(-2px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    color: #fff;
+    border-radius: 50px;
+    padding: 30px 40px;
+    margin-top: 50px;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  border: 3px solid #2382BC;
+  border-radius: 60px;
+  top: 90px;
+  left: 70px;
+  right: 70px;
+  bottom: 40px;
+}
+
+.wrapper h1 {
+    font-size: 70px;
+    text-align: center;
+    margin-top: -20px;
+    text-decoration: underline;
+    text-decoration-thickness: 2.5px;
+    text-underline-offset: 0.2em;
+    font-weight: 650;
+  }
+
+.btn {
+    padding: 20px 140px;
+    font-size: 40px;
+    margin: 80px 0 -80px 400px;
+    background-color: #2382BC;
+    color: #fff;
+    border: 1px solid #666;
+    border-radius: 50px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.btnn {
+    padding: 20px 150px;
+    font-size: 40px;
+    margin: 80px 0 -80px 400px;
+    background-color: #2382BC;
+    color: #fff;
+    border: 1px solid #666;
+    border-radius: 50px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn .btnn::before {
+    content: '';
+    position: absolute;
+    top: 80px;
+    left: 15px;
+    height: 20px;
+    width: 50px;
+    background: #868686;
+    transform: perspective(80px) rotate(-120deg);
+    filter: blur(20px);
+}
+
+.active, .btn:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 26px 1px #fff;
+    border: 1px solid #fff;
+}
+
+.active, .btnn:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 26px 1px #fff;
+    border: 1px solid #fff;
+}

@@ -1,0 +1,255 @@
+/* Global styles */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/bbackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    align-items: center;
+    transition: all .50s ease;
+}
+
+.logo {
+    position: relative;
+    font-size: 1.8em;
+    color: #fff;
+    user-select: none;
+    font-weight: 600;
+    font-style: italic;
+    margin-left: 15px;
+}
+
+.Dlogo {
+    position: absolute;
+    height: 100px;
+    left: 20px;
+    top: -5px;
+    width: 100px;
+}
+
+.user-greeting {
+    margin-top: 30px;
+    color: #ffffff;
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.navigation a {
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation .btnlogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.navigation .btnlogin-popup:hover {
+    background: #fff;
+    color: #162938;
+}
+
+.user {
+    position: relative;
+    color: #2382BC;
+    align-items: center;
+    font-size: 75px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(22, 86, 212, 0.2);
+    border: none;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 10);
+    border-radius: 5px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    width: 150px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    transition: all .50s ease;
+    font-size: 20px;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#menu-icon {
+    font-size: 35px;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+
+.col-12-content {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.col-12-content h1.detect {
+    font-size: 3.5vw;
+    color: #fff;
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+.intrusion {
+    display: flex;
+    flex-direction: column;
+}
+
+.intrusion h2,
+.intrusion h3 {
+    color: #fff;
+    margin: 0;
+    margin-top: 5px;
+}
+
+.intrusion h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.intrusion h3 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.col-12-image {
+    margin-top: 20px;
+}
+
+.col-12-image img {
+    width: 100%;
+    height: 500px;
+}
+
+.chart-wrapper {
+    background-color: rgb(32,61,91);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+@media (min-width: 576px) {
+    .user-greeting {
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .user-greeting {
+        margin-top: 30px;
+        margin-left: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .col-12-content h1.detect {
+        font-size: 5vw;
+        font-weight: 600;
+    }
+
+    .intrusion h2,
+    .intrusion h3,
+    .col-12-content h1.detect {
+        font-size: 2em;
+    }
+
+    .intrusion h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    }
+
+@media (max-width: 1090px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .wrapper h1,
+    .wrapper h2,
+    .wrapper h3,
+    .img,
+    .logodt {
+        position: static;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-12-content {
+        font-size: 3.5vw; /* Set font size based on viewport width */
+    }
+}
+

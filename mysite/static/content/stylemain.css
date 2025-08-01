@@ -1,0 +1,306 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url(../images/bbackground.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden; /* Prevent scrolling */
+  }
+
+.row-content {
+    align-items: center;
+    background: transparent;
+}
+
+.Dlogo {
+    position: fixed;
+    left: 20px;
+    top: 1px;
+}
+
+.navigation a {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.navigation a::after {
+    content: '';
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+.navigation .btnlogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: .5s;
+}
+
+.navigation .btnlogin-popup:hover {
+  background: #fff;
+  color: #162938;
+}
+.wrapper {
+  width: 420px;
+  background-color: rgba(14, 70, 178, .20);
+  border: none;
+  backdrop-filter: blur(-2px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  color: #fff;
+  border-radius: 10px;
+  padding: 30px 40px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform .5s ease;
+  margin: 10px auto;
+  position: relative;
+}
+
+.wrapper.active-popup {
+  transform: scale(1);
+}
+
+.wrapper .icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background-color: rgba(31, 125, 174, .20);
+  font-size: 2em;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.wrapper h5 {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 100;
+}
+
+
+.wrapper .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+  text-align: left;
+}
+
+.input-box b {
+    margin-left: 17px;
+    font-weight: 100;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 3px solid;
+    border-color: #fff;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 0px 20px 45px;
+}
+
+.input-box input::placeholder {
+  color: white;
+  font-style: italic;
+}
+
+.input-box i {
+    position: absolute;
+    left: 15px;
+    top: 100%;
+    transform: translateY(-50%);
+    font-size: 30px;
+}
+
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -25px 0 20px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-left: 17px;
+    margin-top: 25px;
+}
+
+.remember-forgot a {
+  color: green;
+  text-decoration: none;
+  margin-top: 25px;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 45px;
+  background: #2382BC;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.wrapper .register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 20px 0 15px;
+}
+
+.register-link p a {
+  color: green;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.wrapper p a:hover {
+text-decoration: underline;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: rgba(14, 70, 178, .20);
+  border: none;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  color: #fff;
+  border-radius: 20px;
+  margin: 10% auto;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Added relative positioning */
+}
+
+/* Style for the scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #2382BC; /* Same as the modal background color */
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background-color: rgba(14, 70, 178, .20);
+  border-radius: 10px;
+}
+
+/* Style for the button */
+.modal-content button {
+  background-color: #2382BC; /* Change this color as needed */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+/* Hover effect for the button */
+.modal-content button:hover {
+  background-color: #185A87; /* Change this color as needed */
+}
+
+/* Style for the close button */
+.modal-content .close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+

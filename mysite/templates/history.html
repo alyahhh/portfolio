@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> De-TECH </title>
+        <link rel="icon" href="../static/images/favicon16.png" sizes="16x16" type="image/png">
+        <link rel="icon" href="../static/images/favicon32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="../static/images/favicon192.png" sizes="192x192" type="image/png">
+        <link rel="icon" href="../static/images/favicon512.png" sizes="512x512" type="image/png">
+        <link rel="apple-touch-icon" href="../static/images/faviconapple.png" sizes="180x180">
+        <link rel="stylesheet" href="../static/content/hstyle.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="../static/scripts/jquery-1.10.2.js"></script>
+        <style>
+            .scrollable-table {
+                max-height: 500px;
+                /* Set the max height of the table */
+                overflow-y: auto;
+                /* Enable vertical scrolling */
+            }
+
+        </style>
+    </head>
+<body>
+
+<!-- PARENT WRAPPER -->
+<div class="wrapper-card">
+
+   !-- HEADER START -->
+    <div class="row-header">
+        <div class="col-sm-5 col-12">
+            <img src="../static/images/logodt.png" class="Dlogo" style="max-height:100px">
+            <h2>De-TECH</h2>
+        </div>
+        <div class="col-sm-3 col-12" style="text-align: right;">
+            <div class="container01" style="text-align: right;">
+                        <p>HISTORY</p>
+                    </div>
+        </div>
+        <div class="col-sm-4 col-12">
+            <nav class="navigation">
+                <a href="/home">Home</a>
+                <a href="/analysis">Analysis</a>
+                <a href="/dashboard">Dashboard</a>
+
+            </nav>
+        </div>
+    </div>
+<!-- HEADER END -->
+
+    <!-- CONTENT -->
+
+
+    <div class="col-12" style="min-height:100px; padding:10px;">
+        <div class="wrapper-m" style="align-items: center;">
+            <div class="row">
+                <div class="scrollable-table">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>DATE</th>
+                                <th>TIME</th>
+                                <th>Src IP Address</th>
+                                <th>Dst IP Address</th>
+                                <th>TRAFFIC</th>
+                                <th>CLASSIFICATION</th>
+                            </tr>
+                        </thead>
+                        <tbody id='tblHistoryBody'></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const userLoggedIn = "{{ userLoggedIn }}"; // Injected from Flask
+    const userIdLoggedIn = "{{ userIdLoggedIn }}"; // Injected from Flask
+    let historyJSONdata = "{{ historyJSONdata }}";
+    let historyData = JSON.parse(historyJSONdata.replace(/&#34;/g, '"'));
+    let tblHistoryRow = 1;
+    let tblHistoryBody = '';
+    $.each(historyData, function(index, item) {
+        // Access individual properties for each item
+        var historyDataDate = new Date(item.date);
+        // Format date
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var formattedDate = monthNames[historyDataDate.getMonth()] + ' ' + historyDataDate.getDate() + ', ' + historyDataDate.getFullYear();
+        // Format time
+        var timeParts = item.time.split(":");
+        var hours = parseInt(timeParts[0], 10);
+        var minutes = parseInt(timeParts[1], 10);
+        var seconds = parseInt(timeParts[2], 10);
+        var ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Handle midnight (00:00:00) as 12 AM
+        var formattedTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+        var historyDataTime = formattedTime;
+        var historyDataSourceip = item.sourceip;
+        var historyDataDestip = item.destip;
+        var historyDataTraffic = item.traffic;
+        var historyDataClassification = item.classification;
+        let historyTableRow = `
+    <tr>
+        <td class="td${tblHistoryRow}" id="historydate${tblHistoryRow}">${formattedDate}</td>
+        <td class="td${tblHistoryRow}" id="historystarttime${tblHistoryRow}">${historyDataTime}</td>
+        <td class="td${tblHistoryRow}" id="historysourceip${tblHistoryRow}">${historyDataSourceip}</td>
+        <td class="td${tblHistoryRow}" id="historydestip${tblHistoryRow}">${historyDataDestip}</td>
+        <td class="td${tblHistoryRow}" id="historytraffic${tblHistoryRow}">${historyDataTraffic}</td>
+        <td class="td${tblHistoryRow}" id="historyclassification${tblHistoryRow}">${historyDataClassification}</td>
+    </tr>`;
+
+        tblHistoryBody = tblHistoryBody + historyTableRow;
+        tblHistoryRow++;
+    });
+    // Append additional continuous rows
+    const startIdx = tblHistoryRow; // Index to start continuous rows
+    const numRowsToAdd = 5; // Number of continuous rows to add
+    for (let i = 0; i < numRowsToAdd; i++) {
+        let continuousHistoryTableRow = `
+											<tr>
+												<td>New Date ${startIdx + i}</td>
+												<td>New Time ${startIdx + i}</td>
+												<td>New Sourceip ${startIdx + i}</td>
+												<td>New Destip ${startIdx + i}</td>
+												<td>New Traffic ${startIdx + i}</td>
+												<td>New Classification ${startIdx + i}</td>
+											</tr>`;
+        tblHistoryBody += continuousHistoryTableRow;
+    }
+    $("#tblHistoryBody").html(tblHistoryBody);
+</script>
+
+</body>
+</html>

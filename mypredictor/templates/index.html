@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Data Analysis App</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #162938; /* Dark blue background color */
+            background-image: url('../static/images/bbackground.png'); /* Replace with your image link */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+        }
+
+        .content {
+            text-align: center;
+            background-color: rgba(22, 41, 56, 0.4);
+            color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px; /* Adjust the margin-top as needed */
+        }
+
+        button {
+            background-color: #162938;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, color 0.3s;
+            width: auto;
+            margin-top: 10px;
+            width: 250px;
+            height: 40px; /* Set a fixed height for the button */
+        }
+
+        button:hover {
+            background-color: #45a049;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome to the Flask Data Analysis App!</h1>
+
+        <!-- Retrieve Data Form -->
+        <form id="retrieveDataForm" onsubmit="retrieveData(); return false;">
+            <button type="submit">Retrieve Data</button>
+        </form>
+    </div>
+
+    <script>
+        // Retrieve Data
+        function retrieveData() {
+            fetch('/retrieveData', {
+                method: 'GET'
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                // Call preprocessData after successfully retrieving data
+                preprocessData();
+            })
+            .catch(error => alert("Error: " + error));
+        }
+
+        // Preprocess Data
+        function preprocessData() {
+            fetch('/preprocessData', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => alert("Error: " + error));
+        }
+    </script>
+</body>
+</html>

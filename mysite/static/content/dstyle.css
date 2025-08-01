@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../images/bbackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+
+}
+
+.logo {
+    font-size: 1.8em;
+    color: #fff;
+    user-select: none;
+    font-weight: 600;
+    font-style: italic;
+
+}
+
+
+.wrapper {
+    width:1200px;
+    height:900px;
+    background-color: rgba(14, 70, 178, .20);
+    border: none;
+    backdrop-filter: blur(-2px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    overflow: hidden;
+    margin-top: 50px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wrapper-header {
+    max-height: 100px !important;
+}
+
+
+.wrapper-card {
+    position: absolute !important;
+    top: 0 !important;
+}
+
+.chart-wrapper {
+    background-color: rgb(32,61,91);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    height:100%;
+
+}
+
+.chart_wrapper {
+    background-color: rgb(32,61,91);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
+    height:100%;
+
+}
+
+.floatingImage {
+    position: absolute;
+    bottom: 100%; /* Adjust the top position as needed */
+    left: 50px; /* Adjust the left position as needed */
+    z-index: 2; /* Ensure the image is on top of other elements */
+}
+
+
+.container p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins';
+    font-size: 30px;
+    background-color: rgb(33,129,187);
+    border-radius: 40px;
+    width: fit-content;
+    padding: 10px 20px;
+
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrapper p{
+    font-style:italic;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.navigation1 {
+    color: #ffffff;
+    margin-top: 30px;
+    margin-left: 350px;
+    font-size: 22px;
+    display: inline;
+}
+
+.navigation1 a{
+    color: #ffffff;
+    margin-left: 650px;
+    font-style:italic;
+}
+
+
+
+.row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: transparent;
+  color: #fff;
+  height: 15%;
+  margin-right: auto;
+}
+
+.row-header .navigation {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.row-header .navigation a {
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.row-header .navigation a:hover {
+    text-decoration: underline;
+}
+
+.navigation .btnlogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  transition: .5s;
+}
+
+.navigation .btnlogin-popup:hover {
+  background: #fff;
+  color: #162938;
+}
+
+.col-sm-4 h2 {
+    top: 5px;
+    left: 5px;
+    /* right: 1px; */
+    margin-left: 40px;
+    color: #ffffff;
+    font-style: italic;
+    margin-top: 25px;
+    position: absolute;
+    /* margin-right: 50px; */
+}
+
+.Dlogo {
+    position: relative;
+    right: 70px;
+    top: 1px
+    width: 110px;
+}
+
+.dashboardnumalerts {
+    padding-left:300px;
+}
+
+.icon-circle {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.icon-circle i {
+    font-size: 20px;
+}
+
+.question-mark {
+    font-size: 18px;
+}
+
+
+@media screen and (min-width: 576px) /* IF PAGE WIDTH IS GREATER THAN 576px */
+{
+    .wrapper-card {
+        width: 100% !important;
+        padding-left: 50px !important;
+        padding-right: 50px !important;
+    }
+}
+
+@media screen and (max-width: 576px)  /* IF PAGE WIDTH IS LESS THAN 576px */
+{
+    .wrapper-card {
+        width: 100% !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+}
+
+
+@media screen and (max-width: 576px)
+{
+    .navigation {
+        margin-left: 0; /* Adjust as needed */
+        text-align: right; /* Align to the right for smaller screens */
+    }
+
+
+    .row-header {
+    padding: 10px;
+    }
+
+  .row-header .navigation {
+    flex-direction: column;
+    align-items: center;
+     }
+
+  .row-header .navigation a {
+    margin-left: 0;
+    margin-top: 10px;
+    }
+
+    .col-sm-10 h4 {
+        margin-right: 0;
+        font-size: 20px;
+    }
+
+    .col-sm-4 h2 {
+    top: 5px;
+    left: 5px;
+    margin-left: 105px;
+    color: #ffffff;
+    font-style: italic;
+    margin-top: 30px;
+
+}
+    .dashboardnumalerts {
+    padding-left:300px;
+}
+
+    .col-6 {
+
+    flex: 0 0 50%;
+    max-width: 60%;
+}
+}
+
+@media only screen and (max-width: 768px) {
+  .row-header {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .row-header .navigation {
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .col-sm-6 h2 {
+    position: static;
+    margin-top: 20px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .Dlogo {
+    position: static;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .row-header {
+    padding: 10px;
+  }
+
+  .row-header .navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .row-header .navigation a {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .col-12.wrapper button {
+    width: 80%;
+    height: 50px;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}

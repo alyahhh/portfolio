@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> De-TECH Dashboard </title>
+        <link rel="icon" href="../static/images/favicon16.png" sizes="16x16" type="image/png">
+        <link rel="icon" href="../static/images/favicon32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="../static/images/favicon192.png" sizes="192x192" type="image/png">
+        <link rel="icon" href="../static/images/favicon512.png" sizes="512x512" type="image/png">
+        <link rel="apple-touch-icon" href="../static/images/faviconapple.png" sizes="180x180">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/content/dstyle.css">
+        <script src="../static/scripts/jquery-1.10.2.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-4ulTu00CY7euGzHI1S2goWFEbRtA/GlMlw8LF5zVS9Iw+M0R2AI3J6zCkQw0A2ej" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- PARENT WRAPPER -->
+        <div class="wrapper-card">
+           <!-- HEADER START -->
+    <div class="row-header">
+        <div class="col-sm-4 col-12">
+            <img src="../static/images/logodt.png" class="Dlogo" style="max-height:100px">
+            <h2>De-TECH</h2>
+        </div>
+        <div class="col-sm-4 col-12">
+            <div class="container" style="text-align: center;">
+                        <p>DASHBOARD</p>
+                    </div>
+        </div>
+        <div class="col-sm-4 col-12">
+            <nav class="navigation">
+                <a href="/home">Home</a>
+                <a href="/analysis">Analysis</a>
+                <a href="/history">History</a>
+
+            </nav>
+        </div>
+    </div>
+<!-- HEADER END -->
+
+            <!-- CONTENT -->
+            <div class="row">
+                <div class="col-sm-5 col-12" style="min-height:100px; padding:10px;">
+                    <div class="chart-wrapper"> Malicious Activity Trend
+                            <span class="icon-circle" data-toggle="modal" data-target="#maliciousActivityModal">
+                                <i class='bx bx-info-circle'></i>
+                            </span>
+                        <canvas id="lineChart" width="300" height="170"></canvas>
+                    </div>
+                    <p>
+                        <span id="dashboardtime"></span>
+                    </p>
+                </div>
+                <div class="col-sm-7 col-12" style="min-height:100px">
+                    <div class="row">
+                        <div class="col-12" style="min-height:50px; padding:10px;">
+                            <div class="chart_wrapper" style="text-align:left;"> Number of Alerts:
+                            <div class="col-12" style="min-height:50px; padding:10px; text-align: center;">
+                        <span id="dashboardnumalerts" style="font-size: 42px;"></span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-12" style="min-height:100px; padding:10px">
+                            <div class="chart-wrapper"> Traffic Patterns
+                                <span class="icon-circle" data-toggle="modal" data-target="#trafficPatternsModal">
+                                    <i class='bx bx-info-circle'></i>
+                                </span>
+                                <canvas id="lineChart1" width="100" height="50"></canvas>
+                            </div>
+                            <p>
+                                <span id="dashboardaveflowbytsrate"></span>
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-12" style="min-height:100px; padding:10px">
+                            <div class="chart-wrapper"> Packet Capture
+                                <span class="icon-circle" data-toggle="modal" data-target="#packetCaptureModal">
+                                    <i class='bx bx-info-circle'></i>
+                                </span>
+                                <canvas id="lineChart2" width="100" height="50"></canvas>
+                            </div>
+                            <p>
+                                <span id="dashboardaveflowpktsrate"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-12 align-items-center justify-content-center" style="min-height:100px; padding:10px; content:center;">
+                    <div class="chart-wrapper"> Protocol Distribution
+                        <span class="icon-circle" data-toggle="modal" data-target="#protocolDistributionModal">
+                            <i class='bx bx-info-circle'></i>
+                        </span>
+                        <canvas id="pieChart" width="100" height="50" style="margin-top: 50px;"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12" style="min-height:100px; padding:10px;">
+                    <div class="chart-wrapper"> IP Addresses (Source and Destination)
+                        <span class="icon-circle" data-toggle="modal" data-target="#ipAddressesModal">
+                            <i class='bx bx-info-circle'></i>
+                        </span>
+                        <div style="text-align:center; center; min-width: 100%;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <table id="ipTableSource" class="table table-bordered" style="width: 100%; color: white;">
+                                        <thead>
+                                            <tr>
+                                                <th style="color: white;">RANK</th>
+                                                <th style="color: white;">Source IP</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table data will be populated dynamically using JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <table id="ipTableDestination" class="table table-bordered" style="width: 100%; color: white;">
+                                        <thead>
+                                            <tr>
+                                                <th style="color: white;">RANK</th>
+                                                <th style="color: white;">Destination IP</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Table data will be populated dynamically using JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12 " style="min-height:100px; padding:10px">
+                    <div class="chart-wrapper"> Targeted Services
+                        <span class="icon-circle" data-toggle="modal" data-target="#targetedServicesModal">
+                            <i class='bx bx-info-circle'></i>
+                        </span>
+                        <div class="table-responsive" style="text-align:center;">
+                            <table id="ipPortTable" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="color: white;">RANK</th>
+                                        <th style="color: white;">Destination Port</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- This will be populated with JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Modal for pop-up message -->
+<div class="modal fade" id="maliciousActivityModal" tabindex="-1" role="dialog" aria-labelledby="maliciousActivityModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="maliciousActivityModalLabel">Malicious Activity Trend Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your pop-up message content goes here -->
+                The malicious activity trend indicates when malicious traffic appeared.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal for Traffic Patterns pop-up message -->
+<div class="modal fade" id="trafficPatternsModal" tabindex="-1" role="dialog" aria-labelledby="trafficPatternsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="trafficPatternsModalLabel">Traffic Patterns Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your pop-up message content goes here -->
+                This graph displays the number of analyzed bytes over time. The y-axis represents
+                the average flow speed of bytes, while the x-axis represents each captured traffic instance.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Packet Capture pop-up message -->
+<div class="modal fade" id="packetCaptureModal" tabindex="-1" role="dialog" aria-labelledby="packetCaptureModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="packetCaptureModalLabel">Packet Capture Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your pop-up message content goes here -->
+                This graph displays the number of analyzed packets over time. The y-axis
+                represents the average flow speed of packets, while the x-axis represents each captured traffic instance.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Protocol Distribution pop-up message -->
+<div class="modal fade" id="protocolDistributionModal" tabindex="-1" role="dialog" aria-labelledby="protocolDistributionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="protocolDistributionModalLabel">Protocol Distribution Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your pop-up message content goes here -->
+                This graph displays the frequency of protocols used in the network.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for IP Addresses pop-up message -->
+<div class="modal fade" id="ipAddressesModal" tabindex="-1" role="dialog" aria-labelledby="ipAddressesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ipAddressesModalLabel">IP Addresses Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your pop-up message content goes here -->
+                <strong>Source IP Address Rank:</strong>
+                The ranking of source IP addresses represents which IP address has the highest number of
+                forwarded packets in the network. This is measured by the sum of 'forward packets/second' for each respective source IP address.
+
+                <br><br>
+
+                <strong>Destination IP Address Rank:</strong>
+                The ranking of destination IP addresses represents which IP address has the highest
+                number of received packets in the network. This is measured by the sum of 'backward
+                packets/second' for each respective destination IP address.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Targeted Services pop-up message -->
+<div class="modal fade" id="targetedServicesModal" tabindex="-1" role="dialog" aria-labelledby="targetedServicesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="targetedServicesModalLabel">Targeted Services Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your pop-up message content goes here -->
+                This ranking represents which ports are often used. It is measured by the sum of 'flow bytes/second' for each respective port.
+
+                <br><br>
+
+                To find out more about the given ports/services, refer to the Service Name and Transport Protocol Port Number Registry of the
+                Internet Assigned Numbers Authority (IANA): https://tinyurl.com/IANAPortNumbers
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</html>
+<script>
+    // Check if an alert message is provided and display it
+    const userLoggedIn = "{{ userLoggedIn }}"; // Injected from Flask
+    const userIdLoggedIn = "{{ userIdLoggedIn }}"; // Injected from Flask
+    const totalTCPCount = "{{ total_tcp_count }}"; // Injected from Flask
+    const totalUDPCount = "{{ total_udp_count }}"; // Injected from Flask
+    const resultExists = "{{ resultExists }}";
+
+    var resultlscSortByDestinationIp = [];
+    var resultlscSortByPort = [];
+    var resultlscSortBySourceIp = [];
+
+    if (resultExists == "1") {
+        $("#dashboardtime").html("{{ time }}");
+        $("#dashboardaveflowpktsrate").html("{{ aveflowpktsrate }}");
+        $("#dashboardaveflowbytsrate").html("{{ aveflowbytsrate }}");
+        $("#dashboardnumalerts").html("{{ numalerts }}");
+        // $("#dashboardprotocol").html("{{ protocol }}");
+    }
+    // Check if an alert message is provided and display it
+    var chartDay = $.parseJSON('{{ chartDay | tojson | safe }}'); // Injected from Flask
+    var chartPackets = $.parseJSON('{{ chartPackets | tojson | safe }}'); // Injected from Flask
+    var chartHours = $.parseJSON('{{ chartHours | tojson | safe }}'); // Injected from Flask
+    var chartTraffic = $.parseJSON('{{ chartTraffic | tojson | safe }}'); // Injected from Flask
+    var chartWeek = $.parseJSON('{{ chartWeek | tojson | safe }}'); // Injected from Flask
+    var chartNPackets = $.parseJSON('{{ chartNPackets | tojson | safe }}'); // Injected from Flask
+    var chartHUT = $.parseJSON('{{ chartHUT | tojson | safe }}'); // Injected from Flask
+    var chartDt = $.parseJSON('{{ chartDt | tojson | safe }}'); // Injected from Flask
+    var chartColors = ["#56A6DF", "#FF3131", "#00BF63"];
+    var pieColors = ['#FFA500', '#00ADEF'];
+
+    // get and clean tblrankings data - start
+    var latestranking = '{{ latestranking | tojson | safe }}'; // Injected from Flask
+    var latestrankingclean = $.parseJSON((latestranking).replaceAll('"[{','[{').replaceAll('}]"','}]').replaceAll('}{', '},{'));
+
+    var jsonData = [];
+
+    for(x=0; x< latestrankingclean.length; x++){
+        for(x2=1; x2<= Object.keys(latestrankingclean[x]).length; x2++){
+            let topdstip = Object.keys(latestrankingclean[x]['Rank ' + x2]['top_dst_ip'])[0].trim();
+            let topdstipvalue = Object.values(latestrankingclean[x]['Rank ' + x2]['top_dst_ip'])[0];
+            let topports =  Object.keys(latestrankingclean[x]['Rank ' + x2]['top_ports'])[0].trim();
+            let topportsvalue = Object.values(latestrankingclean[x]['Rank ' + x2]['top_ports'])[0];
+            let topsrcip = Object.keys(latestrankingclean[x]['Rank ' + x2]['top_src_ip'])[0].trim();
+            let topsrcipvalue = Object.values(latestrankingclean[x]['Rank ' + x2]['top_src_ip'])[0];
+
+            jsonData.push([{'top_dst_ip' : topdstip, 'value': topdstipvalue },
+                          {'top_ports' : topports, 'value': topportsvalue},
+                          {'top_src_ip' : topsrcip, 'value': topsrcipvalue }]);
+        }
+    }
+
+    var lsc = [];
+
+    $.each(jsonData, function(index, array) {
+        let matchCount = 0;
+        let arraytop_dst_ip = array[0].top_dst_ip;
+        let arraytop_dst_ipvalue = array[0].value;
+        let arraytop_ports = array[1].top_ports;
+        let arraytop_portsvalue = array[1].value;
+        let arraytop_src_ip = array[2].top_src_ip;
+        let arraytop_src_ipvalue = array[2].value;
+
+        for(a = 0; a < lsc.length; a++) {
+            if (lsc[a][0].top_dst_ip == arraytop_dst_ip && lsc[a][1].top_ports == arraytop_ports && lsc[a][2].top_src_ip == arraytop_src_ip) {
+                matchCount++;
+
+                lsc[a][0].top_dst_ip_value = lsc[a][0].top_dst_ip_value + arraytop_dst_ipvalue;
+                lsc[a][1].top_ports_value = lsc[a][1].top_ports_value + arraytop_portsvalue;
+                lsc[a][2].top_src_ip_value = lsc[a][2].top_src_ip_value + arraytop_src_ipvalue;
+            }
+
+        }
+
+        if (matchCount == 0) {
+            lsc.push([{'top_dst_ip' : arraytop_dst_ip, 'top_dst_ip_value': arraytop_dst_ipvalue },
+                      {'top_ports' : arraytop_ports, 'top_ports_value': arraytop_portsvalue},
+                      {'top_src_ip' : arraytop_src_ip, 'top_src_ip_value': arraytop_src_ipvalue }]);
+        }
+
+    });
+
+
+    //DESTINATION P
+    var lscSortByDestinationIp = [];
+    for(m = 0; m< lsc.length; m++) {
+       lscSortByDestinationIp.push(lsc[m][0]);
+    }
+
+    var sumMaplscSortByDestinationIp = {};
+    lscSortByDestinationIp.forEach(function(obj) {
+        if (!sumMaplscSortByDestinationIp[obj.top_dst_ip]) {
+            sumMaplscSortByDestinationIp[obj.top_dst_ip] = obj.top_dst_ip_value;
+        } else {
+            sumMaplscSortByDestinationIp[obj.top_dst_ip] += obj.top_dst_ip_value;
+        }
+    });
+
+    resultlscSortByDestinationIp = [];
+    for (var key in sumMaplscSortByDestinationIp) {
+        resultlscSortByDestinationIp.push({ top_dst_ip: key, top_dst_ip_value: sumMaplscSortByDestinationIp[key] });
+    }
+
+    resultlscSortByDestinationIp.sort((a, b) => b.top_dst_ip_value - a.top_dst_ip_value);
+
+
+
+    // PORT
+    var lscSortByPort = [];
+    for(m = 0; m< lsc.length; m++) {
+       lscSortByPort.push(lsc[m][1]);
+    }
+
+    var sumMaplscSortByPort = {};
+    lscSortByPort.forEach(function(obj) {
+        if (!sumMaplscSortByPort[obj.top_ports]) {
+            sumMaplscSortByPort[obj.top_ports] = obj.top_ports_value;
+        } else {
+            sumMaplscSortByPort[obj.top_ports] += obj.top_ports_value;
+        }
+    });
+
+    resultlscSortByPort = [];
+    for (var key in sumMaplscSortByPort) {
+        resultlscSortByPort.push({ top_ports: key, top_ports_value: sumMaplscSortByPort[key] });
+    }
+
+    resultlscSortByPort.sort((a, b) => b.top_ports_value - a.top_ports_value);
+
+
+
+    // SOURCE IP
+    var lscSortBySourceIp = [];
+    for(m = 0; m< lsc.length; m++) {
+       lscSortBySourceIp.push(lsc[m][2]);
+    }
+
+    var sumMaplscSortBySourceIp = {};
+    lscSortBySourceIp.forEach(function(obj) {
+        if (!sumMaplscSortBySourceIp[obj.top_src_ip]) {
+            sumMaplscSortBySourceIp[obj.top_src_ip] = obj.top_src_ip_value;
+        } else {
+            sumMaplscSortBySourceIp[obj.top_src_ip] += obj.top_src_ip_value;
+        }
+    });
+
+    resultlscSortBySourceIp = [];
+    for (var key in sumMaplscSortBySourceIp) {
+        resultlscSortBySourceIp.push({ top_src_ip: key, top_src_ip_value: sumMaplscSortBySourceIp[key] });
+    }
+    resultlscSortBySourceIp.sort((a, b) => b.top_src_ip_value - a.top_src_ip_value);
+
+
+    // get and clean tblrankings data - end
+
+
+    console.log(chartDay);
+    console.log(chartPackets);
+    console.log(chartHours);
+    console.log(chartTraffic);
+    console.log(chartWeek);
+    console.log(chartNPackets);
+    console.log(chartHUT);
+    console.log(chartDt);
+    $(document).ready(function() {
+        createLineChart(chartDay, chartPackets, 'lineChart', 'Number of Alerts', chartColors[0]);
+        createLineChart(chartHours, chartTraffic, 'lineChart1', 'Traffic Patterns', chartColors[1]);
+        createLineChart(chartWeek, chartNPackets, 'lineChart2', 'Packet Capture', chartColors[2]);
+        createPieChart(['TCP', 'UDP'], [totalTCPCount, totalUDPCount], 'pieChart', 'Protocol Distribution', ['#FFA500', '#00ADEF', '#FF9B00']);
+        populateSourceIpTable(resultlscSortBySourceIp);
+        populateDestinationIpTable(resultlscSortByDestinationIp);
+        populatePortTable(resultlscSortByPort);
+    });
+    let createLineChart = function(chartLabel, chartData, chartElement, chartLabelName, chartColors) {
+        // Example chart data for a line chart
+        var linechartData = {
+            type: 'line',
+            data: {
+                labels: chartLabel,
+                datasets: [{
+                    label: chartLabelName,
+                    data: chartData,
+                    fill: false,
+                    borderColor: chartColors,
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    pointBackgroundColor: chartColors,
+                    pointBorderColor: chartColors,
+                    pointHoverRadius: 7,
+                    pointHoverBackgroundColor: 'rgba(32,61,91)',
+                    pointHoverBorderColor: chartColors,
+                    backgroundColor: 'rgba(32,61,91)'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: "white"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white' // Set the color of X-axis labels to white
+                        }
+                    },
+                    y: {
+
+                        ticks: {
+                        color: 'white', // Set the color of Y-axis labels to white
+                        stepSize: 1 // Display only integer values on the y-axis
+                        }
+                    }
+                }
+            }
+        };
+        var ctx = document.getElementById(chartElement).getContext('2d');
+        // Initialize Chart.js line chart
+        var lineChart = new Chart(ctx, linechartData);
+    };
+    let createBarChart = function(barLabel, barData, barElement) {
+        // Example chart data for a bar chart
+        var barchartData = {
+            type: 'bar',
+            data: {
+                labels: barLabel,
+                datasets: [{
+                    label: 'Malicious Activity Trends',
+                    data: barData,
+                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: "white"
+                        }
+                    }
+                },
+                scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // Set the color of X-axis labels to white
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white', // Set the color of Y-axis labels to white
+                        stepSize: 1 // Display only integer values on the y-axis
+                    }
+                }
+            }
+        }
+    };
+        var ctx = document.getElementById(barElement).getContext('2d');
+        // Initialize Chart.js bar chart
+        var barChart = new Chart(ctx, barchartData);
+    };
+    let createPieChart = function(labels, data, element, labelName) {
+        var pieChartData = {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: ['#FFA500', '#00ADEF'],
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white' // Customize legend text color
+                        }
+                    }
+                }
+            }
+        };
+        var ctx = document.getElementById(element).getContext('2d');
+        var pieChart = new Chart(ctx, pieChartData);
+    };
+
+    let populateSourceIpTable = function(data) {
+        var tableBody = document.getElementById('ipTableSource').getElementsByTagName('tbody')[0];
+        // Clear any existing rows
+        tableBody.innerHTML = '';
+        // Create 6 empty rows with 3 columns each
+        for (var i = 0; i < data.length; i++) {
+            var newRow = tableBody.insertRow();
+            for (var j = 0; j < 2; j++) {
+                var newCell = newRow.insertCell(j);
+                // Set the cells to be empty or with a placeholder if needed
+                newCell.style.color = 'white';
+            }
+
+            newRow.cells[0].innerText = i + 1;
+            newRow.cells[1].innerText = data[i].top_src_ip;
+        }
+    };
+
+    let populateDestinationIpTable = function(data) {
+        var tableBody = document.getElementById('ipTableDestination').getElementsByTagName('tbody')[0];
+        // Clear any existing rows
+        tableBody.innerHTML = '';
+        // Create 6 empty rows with 3 columns each
+        for (var i = 0; i < data.length; i++) {
+            var newRow = tableBody.insertRow();
+            for (var j = 0; j < 2; j++) {
+                var newCell = newRow.insertCell(j);
+                // Set the cells to be empty or with a placeholder if needed
+                newCell.style.color = 'white';
+            }
+
+            newRow.cells[0].innerText = i + 1;
+            newRow.cells[1].innerText = data[i].top_dst_ip;
+        }
+    };
+
+    let populatePortTable = function(data) {
+        var tableBody = document.getElementById('ipPortTable').getElementsByTagName('tbody')[0];
+        // Clear any existing rows
+        tableBody.innerHTML = '';
+        // Create 6 empty rows with 3 columns each
+        for (var i = 0; i < data.length; i++) {
+            var newRow = tableBody.insertRow();
+            for (var j = 0; j < 2; j++) {
+                var newCell = newRow.insertCell(j);
+                // Set the cells to be empty or with a placeholder if needed
+                newCell.style.color = 'white';
+            }
+
+            newRow.cells[0].innerText = i + 1;
+            newRow.cells[1].innerText = data[i].top_ports;
+        }
+    };
+
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+</script>
